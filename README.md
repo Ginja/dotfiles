@@ -2,18 +2,18 @@
 
 ##Instructions
 
-1. Fork and clone to ~/dotfiles
+* Fork and clone to ~/dotfiles
 ```bash
 # Swapping my username for yours
 cd ~ && git clone https://github.com/Ginja/dotfiles.git dotfiles
 ```
-2. (Optional) Place and/or customize your <b>unhidden</b> files inside ~/dotfiles/
-3. (Optional) Decrypt any *.enc files with the secure.sh script
+* (Optional) Place and/or customize your <b>unhidden</b> files inside ~/dotfiles/
+* (Optional) Decrypt any *.enc files with the secure.sh script
 ```bash
 ~/dotfiles/secure.sh decrypt ~/dotfiles/ssh/config.enc
 # Enter password
 ``` 
-4. Use the dotfiles.sh script to symlink them back inside ~/
+* Use the dotfiles.sh script to symlink them back inside ~/
 ```bash
 ~/dotfiles/scripts/dotfiles.sh add
 ```
