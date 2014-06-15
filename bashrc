@@ -6,6 +6,8 @@ if [[ `uname` == 'Darwin' ]]; then
   alias ls="ls -G"
   alias l="ls -aGhl"
   export EDITOR="atom -w"
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+  export rvmsudo_secure_path=1
 else
   alias ls="ls --color"
   alias l="ls -alh --color"
@@ -28,7 +30,7 @@ function settmuxwindow() {
 
 function ssh() {
   if [[ "$@" == *@* ]]; then
-    remotehost=$(echo "$@" | awk '{match($0,"(.*)(@)(.*)",a)}END{print a[3]}')
+    remotehost=$(echo "$@" | awk '{split($0, a, "@")}{print a[2]}'
   else
     # To catch if -l was used
     array=($@)
