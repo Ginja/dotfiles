@@ -30,7 +30,7 @@ function settmuxwindow() {
 
 function ssh() {
   if [[ "$@" == *@* ]]; then
-    remotehost=$(echo "$@" | awk '{split($0, a, "@")}{print a[2]}'
+    remotehost=$(echo "$@" | awk '{split($0, a, "@")}{print a[2]}')
   else
     # To catch if -l was used
     array=($@)
