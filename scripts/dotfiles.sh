@@ -4,6 +4,11 @@
 
 TIMESTAMP=$(date +%Y-%m-%d_%H%M%S)
 
+if [[ ! -d ~/dotfiles ]]; then
+  echo "~/dotfiles doesn't appear to exist. Move your cloned repo there, and try again."
+  exit 1
+fi
+
 add() {
   cd ~/dotfiles
   __create_folders
