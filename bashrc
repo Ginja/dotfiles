@@ -8,6 +8,7 @@ if [[ `uname` == 'Darwin' ]]; then
   export EDITOR="atom -w"
   [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
   export rvmsudo_secure_path=1
+  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 else
   alias ls="ls --color"
   alias l="ls -alh --color"
