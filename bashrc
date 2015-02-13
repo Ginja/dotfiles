@@ -1,21 +1,37 @@
 # Bail if we're not running interactively
 [[ -z $PS1 ]] && return
 
-alias tma='tmux attach || tmux'
-if [[ `uname` == 'Darwin' ]]; then
-  alias ls="ls -G"
-  alias l="ls -aGhl"
-  export EDITOR="atom -w"
-  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-  export rvmsudo_secure_path=1
-  export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-else
-  alias ls="ls --color"
-  alias l="ls -alh --color"
-  export EDITOR="vim"
-fi
-if [[ `which vim &> /dev/null` ]]; then
-  alias vi="vim"
+# Check that we haven't already been sourced
+if [[ -z ${USER_BASHRC} ]]; then
+  USER_BASHRC="1"
+
+  distro=$(uname)
+  alias tma='tmux attach || tmux'
+
+  if [[ $distro == 'Darwin' ]]; then
+    alias ls="ls -G"
+    alias l="ls -aGhl"
+    export EDITOR="subl -w"
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    export rvmsudo_secure_path=1
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+  elif [[ $distro == 'CYGWIN_NT-6.1-WOW64' ]]; then
+    alias ls="ls --color"
+    alias l="ls -alh --color"
+    export EDITOR="subl -w"
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    export rvmsudo_secure_path=1
+    #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    eval $(/usr/bin/ssh-pageant -r -a "/tmp/.ssh-pageant-$USERNAME")
+  else
+    alias ls="ls --color"
+    alias l="ls -alh --color"
+    export EDITOR="vim"
+  fi
+
+  if [[ `which vim &> /dev/null` ]]; then
+    alias vi="vim"
+  fi
 fi
 
 PS1="\h:\W \u\$ "
