@@ -1,5 +1,5 @@
 [push]
-	default = simple
+	default = upstream
 [user]
   name = Riley Shott
   email = rileyshott+git@gmail.com
