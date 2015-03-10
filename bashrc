@@ -15,7 +15,7 @@ if [[ -z ${USER_BASHRC} ]]; then
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
     export rvmsudo_secure_path=1
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-  elif [[ $distro == 'CYGWIN_NT-6.1-WOW64' ]]; then
+  elif [[ $distro =~ 'CYGWIN' ]]; then
     alias ls="ls --color"
     alias l="ls -alh --color"
     export EDITOR="subl -w"
@@ -42,7 +42,7 @@ function settmuxwindow() {
   else
     host=$1
   fi
-  [[ -n $TMUX ]] && tmux rename-window -t ${TMUX_PANE} $host
+  [[ -n $TMUX ]] && tmux rename-window -t ${TMUX_PANE} $host || printf "\033k$host\033\\"
 }
 
 function ssh() {
