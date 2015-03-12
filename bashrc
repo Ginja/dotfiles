@@ -38,7 +38,7 @@ PS1="\h:\W \u\$ "
 
 function settmuxwindow() {
   if [[ -z $1 ]]; then
-    host=$(hostname)
+    host=$(hostname -s 2> /dev/null || hostname)
   else
     host=$1
   fi
